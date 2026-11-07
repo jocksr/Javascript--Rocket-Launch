@@ -15,18 +15,14 @@ const BASE_URL = "https://lldev.thespacedevs.com/2.3.0";
 // - Calls the callback function and passes the results array
 function getUpcomingLaunches(callback) {
   // TODO: Implement XHR GET request
-  const xhr = new XMLHttpRequest();
-
-  xhr.open("GET", BASE_URL + "/launches/upcoming/");
-
-  xhr.onreadystatechange = function () {
-    if (xhr.readyState == 4 && xhr.status == 200) {
-      const data = JSON.parse(xhr.responseText);
-      callback(data.results);
-    }
-  };
-
-  xhr.send();
+  axios.get(BASE_URL + "/launches/upcoming/")
+    .then(function(response) {
+        populateDropdown(response.data.results);
+    })
+    .catch(function(error) {
+        // Step 7: Display an error message here.
+        console.log("Error!");
+    });
 }
 
 // Step 2: Create populateDropdown(launches)
@@ -62,18 +58,13 @@ document.getElementById("launchDropdown").addEventListener("change", function ()
 // - Parses the response and passes the launch object to the callback
 function getLaunchDetails(launchId, callback) {
   // TODO: Implement XHR GET request for a single launch
-  const xhr = new XMLHttpRequest();
-
-  xhr.open("GET", BASE_URL + "/launches/" + launchId + "/");
-
-  xhr.onreadystatechange = function () {
-      if (xhr.readyState == 4 && xhr.status == 200) {
-          const data = JSON.parse(xhr.responseText);
-          callback(data);
-      }
-  };
-
-  xhr.send();
+  axios.get(BASE_URL + "/launches/" + launchId + "/")
+    .then(function (response) {
+        displayLaunchInfo(response.data);
+    })
+    .catch(function (error) {
+        // Step 7: Display an error message here.
+    });
 }
 
 // Step 5: Create displayLaunchInfo(launch)
@@ -125,7 +116,7 @@ function displayLaunchInfo(launch) {
 }
 
 // Final step: kick off the flow
-getUpcomingLaunches(populateDropdown);
+getUpcomingLaunches();
 
 // ---------------------------------------------------------------
 // PART 2: Axios and promises (refactor after Part 1 is committed)
