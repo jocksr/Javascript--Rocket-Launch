@@ -1,2 +1,310 @@
 /* Part 3: Add custom styling here (colors, fonts, layout, spacing).
    The starter provides no styles. */
+#rocket img {
+    width: 100%;
+    max-width: 650px;
+    height: auto;
+}
+
+:root {
+    --space: #070d18;
+    --panel: #101c2e;
+    --line: #2b405a;
+    --accent: #71e8e0;
+    --text: #f0f5ff;
+    --muted: #a7b9ce;
+}
+
+body {
+    min-height: 100vh;
+    margin: 0;
+    color: var(--text);
+    font-family: "Segoe UI", Arial, sans-serif;
+
+    background-color: var(--space);
+    background-image:
+        radial-gradient(ellipse at top right, #163457, transparent 60%),
+        radial-gradient(1px 1px at 30px 40px, #ffffff80, transparent),
+        radial-gradient(1px 1px at 110px 150px, #ffffff50, transparent);
+
+    background-size: 100% 100%, 180px 180px, 260px 260px;
+}
+
+.mission-shell {
+    max-width: 1440px;
+    padding-right: 32px;
+    padding-left: 32px;
+}
+
+.site-header, footer {
+    border-bottom: 1px solid var(--line);
+}
+
+.brand-icon {
+    display: grid;
+    place-items: center;
+    width: 42px;
+    height: 42px;
+
+    border: 1px solid #71e8e066;
+    border-radius: 12px;
+    background: #71e8e014;
+
+    color: var(--accent);
+    font-size: 1.65rem;
+}
+
+.brand-name, .header-note, .eyebrow, .panel-label, footer {
+    font-family: Consolas, "Courier New", monospace;
+    font-size: 0.75rem;
+    letter-spacing: 0.12em;
+}
+
+.brand-name {
+    font-weight: 700;
+}
+
+.header-note, .hero-description, .form-help, footer {
+    color: var(--muted);
+}
+
+.eyebrow {
+    color: var(--accent);
+    font-weight: 700;
+}
+
+h1 {
+    margin-bottom: 20px;
+    font-size: clamp(2.75rem, 6vw, 5.5rem);
+    font-weight: 800;
+    line-height: 1.05;
+    letter-spacing: -0.05em;
+}
+
+h1 span {
+    color: var(--accent);
+}
+
+.hero-description {
+    max-width: 560px;
+    font-size: 1.05rem;
+    line-height: 1.7;
+}
+
+
+/* Decorative orbit graphic */
+
+.orbit-art {
+    position: relative;
+    display: grid;
+    place-items: center;
+
+    width: 230px;
+    height: 230px;
+    margin-right: 30px;
+
+    border: 1px solid #71e8e033;
+    border-radius: 50%;
+    background: radial-gradient(circle, #71e8e019, transparent 70%);
+
+    animation: orbit 45s linear infinite;
+}
+
+.orbit-art::before, .orbit-art::after {
+    content: "";
+    position: absolute;
+    inset: 30px;
+
+    border: 1px solid #71e8e044;
+    border-radius: 50%;
+}
+
+.orbit-art::after {
+    inset: 60px;
+    border-style: dashed;
+}
+
+.orbit-dot {
+    position: absolute;
+    top: 29px;
+    left: 29px;
+
+    width: 10px;
+    height: 10px;
+
+    border-radius: 50%;
+    background: var(--accent);
+    box-shadow: 0 0 18px var(--accent);
+}
+
+.orbit-core {
+    color: var(--accent);
+    font-size: 3.5rem;
+}
+
+@keyframes orbit {
+    to {
+        transform: rotate(360deg);
+    }
+}
+
+
+/* Panels and launch selector */
+
+.mission-panel {
+    background: linear-gradient(135deg, #14243a, var(--panel));
+    border: 1px solid var(--line);
+    border-radius: 18px;
+    box-shadow: 0 15px 35px #00000026;
+}
+
+.launch-picker {
+    border-top: 3px solid var(--accent);
+}
+
+#launchDropdown {
+    width: 100%;
+    padding: 15px 45px 15px 18px;
+
+    background-color: #091322;
+    color: var(--text);
+    color-scheme: dark;
+
+    border: 1px solid #405674;
+    border-radius: 10px;
+    font-size: 1rem;
+}
+
+#launchDropdown:focus {
+    border-color: var(--accent);
+    box-shadow: 0 0 0 4px #71e8e022;
+}
+
+#launchDropdown option {
+    background-color: #091322;
+    color: var(--text);
+}
+
+.form-help {
+    font-size: 0.85rem;
+}
+
+
+/* Loading and error messages */
+
+#status {
+    min-height: 50px;
+    margin: 16px 0 0;
+    padding: 12px 16px;
+
+    border: 1px solid transparent;
+    border-radius: 10px;
+
+    color: #ffda96;
+    overflow-wrap: anywhere;
+}
+
+#status:not(:empty) {
+    background-color: #ffbf4712;
+    border-color: #ffbf474d;
+}
+
+
+/* Mission details */
+
+.panel-label {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+
+    margin-bottom: 22px;
+    color: var(--muted);
+}
+
+.panel-label span {
+    color: var(--accent);
+}
+
+#missionDetails h2 {
+    margin-bottom: 18px;
+    color: var(--text);
+
+    font-size: clamp(1.5rem, 2.5vw, 2.1rem);
+    font-weight: 700;
+    line-height: 1.3;
+
+    overflow-wrap: anywhere;
+}
+
+#missionDetails p {
+    margin-bottom: 0;
+    color: #c4d2e4;
+    line-height: 1.85;
+    overflow-wrap: anywhere;
+}
+
+
+/* Rocket display */
+
+#rocket {
+    display: grid;
+    place-items: center;
+
+    min-height: 260px;
+    padding: 16px;
+
+    border: 1px solid #2b405a80;
+    border-radius: 12px;
+
+    background-color: #091322;
+    background-image:
+        linear-gradient(#71e8e009 1px, transparent 1px),
+        linear-gradient(90deg, #71e8e009 1px, transparent 1px);
+
+    background-size: 32px 32px;
+
+    color: var(--muted);
+    text-align: center;
+    overflow-wrap: anywhere;
+}
+
+#rocket img {
+    display: block;
+    width: 100%;
+    max-width: 650px;
+    height: auto;
+    margin: auto;
+    border-radius: 8px;
+}
+
+
+/* Footer */
+
+footer {
+    border-bottom: 0;
+    border-top: 1px solid var(--line);
+    font-size: 0.7rem;
+}
+
+
+/* Narrow screens */
+
+@media (max-width: 575px) {
+    .mission-shell {
+        padding-right: 18px;
+        padding-left: 18px;
+    }
+
+    .header-note {
+        display: none;
+    }
+
+    #launchDropdown {
+        font-size: 0.9rem;
+    }
+
+    #rocket {
+        padding: 8px;
+        min-height: 180px;
+    }
+}

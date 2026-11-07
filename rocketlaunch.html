@@ -4,21 +4,87 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-sRIl4kxILFvY47J16cr9ZwB07vP4J8+LH7qKQnuqkuIAvNWLzeN8tE5YBujZqJLB" crossorigin="anonymous">
     <title>Rocket Launch Explorer</title>
     <link rel="stylesheet" href="styles.css">
 </head>
 
 <body>
-    <h1>Rocket Launch Explorer</h1>
+    <!-- <h1>Rocket Launch Explorer</h1>
 
     <label for="launchDropdown">Upcoming launches</label>
-    <select id="launchDropdown"></select>
+    <select id="launchDropdown"></select> -->
 
     <!-- Used in Part 2 for loading and error messages -->
-    <p id="status"></p>
+    <!-- <p id="status"></p>
 
     <div id="missionDetails"></div>
-    <div id="rocket"></div>
+    <div id="rocket"></div> -->
+
+    <!-- My HTML. Updated for STYLE purposes -->
+    <main class="container mission-shell py-4 py-lg-5">
+
+        <!-- Page branding -->
+        <header class="site-header d-flex justify-content-between align-items-center gap-3 pb-3">
+            <div class="d-flex align-items-center gap-3">
+                <span class="brand-icon" aria-hidden="true">✦</span>
+                <span class="brand-name">MISSION CONTROL</span>
+            </div>
+
+            <span class="header-note">ROCKET LAUNCH EXPLORER</span>
+        </header>
+
+        <!-- Introduction -->
+        <section class="row align-items-center g-4 py-4 py-lg-5" aria-labelledby="pageHeading">
+            <div class="col-lg-8">
+                <h1 id="pageHeading">Explore the<br><span>next launch.</span></h1>
+                <p class="hero-description mb-0">Choose a mission.</p>
+            </div>
+
+            <div class="col-lg-4 d-none d-lg-flex justify-content-end">
+                <div class="orbit-art" aria-hidden="true">
+                    <span class="orbit-dot"></span>
+                    <span class="orbit-core">✦</span>
+                </div>
+            </div>
+        </section>
+
+        <!-- Launch selection and request status -->
+        <section class="mission-panel launch-picker p-3 p-md-4 mb-4" aria-labelledby="launchLabel">
+            <label id="launchLabel" for="launchDropdown" class="form-label eyebrow mb-3">SELECT AN UPCOMING LAUNCH</label>
+            <select id="launchDropdown" class="form-select form-select-lg" aria-describedby="launchHelp">
+                <option value="" disabled selected>Choose a launch to explore...</option>
+            </select>
+            <p id="launchHelp" class="form-help mt-2 mb-0">Select a launch to load its mission details and rocket image.</p>
+            <p id="status" role="status" aria-live="polite" aria-atomic="true"></p>
+        </section>
+
+        <!-- Mission details and rocket -->
+        <div class="row g-4 align-items-start">
+            <div class="col-12 col-lg-5">
+                <section class="mission-panel p-3 p-md-4" aria-label="Mission details">
+                    <p class="panel-label"><span>01</span> MISSION BRIEF</p>
+                    <div id="missionDetails" aria-live="polite">
+                        <h2>Your next mission awaits.</h2>
+                        <p>Choose a launch above to discover what it will carry, where it is headed, and why it matters.</p>
+                    </div>
+                </section>
+            </div>
+
+            <div class="col-12 col-lg-7">
+                <section class="mission-panel p-3 p-md-4" aria-label="Rocket image">
+                    <p class="panel-label"><span>02</span> LAUNCH VEHICLE</p>
+                    <div id="rocket" aria-live="polite">Choose a launch to meet its rocket.</div>
+                </section>
+            </div>
+        </div>
+
+        <footer class="d-flex flex-column flex-sm-row justify-content-between gap-2 mt-4 pt-3">
+            <a href="https://thespacedevs.com/">Launch data: The Space Devs</a>
+        </footer>
+
+    </main>
 
     <!-- Part 2: add the Axios script tag above app.js -->
     <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
